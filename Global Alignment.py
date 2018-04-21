@@ -19,15 +19,15 @@ BLOSUM = {}                                     # initialise dictionary to conta
 #     for j, jval in enumerate(AA):
 #         AAcombos.append(ival+jval)
 
-count = 0
+index = 0
 for line in lineList:
     #print(line)
     # print(line.split('\t'))
     for num in line.split('\t'):
-         print(int(num))
-         count += 1
+        key = AAcombos[index]
+        BLOSUM[key] = int(num)
+        print(f"key={key} inserted into BLOSUM with value={int(num)}")
+        index += 1
          
     
     print('Next row \n')
-
-print(count)
