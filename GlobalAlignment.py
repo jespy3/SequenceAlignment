@@ -100,11 +100,15 @@ def global_alignment_linear(X, Y, d):
     # Setting size of matrix
     matrix = np.zeros((len(X)+1, len(Y)+1))
 
+    print(len(Y))
+    longerString = X if len(X) >= len(Y) else Y
     # initialising first row
-    for i, num in enumerate(matrix[0]):
-        matrix[0][i] = -i * d
+    for j in range(len(Y)+1):
+        matrix[0][j] = -j * d
 
-    # initialising second row
+    # initialising first column
+    for i in range(len(X)+1):
+        matrix[i][0] = -i * d
 
     print(matrix)
 
