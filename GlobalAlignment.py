@@ -70,6 +70,13 @@ class AminoAcid:
 
 
 def getBLOSUMscore(firstAA, secondAA):
+    """
+    Returns the similarity score of two amino acids.
+    
+    :param firstAA: string of one letter according to an amino acid, usually from the first AA sequence.
+    :param secondAA: string of one letter according to an amino acid, usually from the second AA sequence.
+    :return: returns BLOSUM62 score of the amino acid similarity.
+    """
     AAcombo = firstAA + secondAA
     AAcombo = orderAAs(AAcombo)
     tuple = (AAcombo[0],AAcombo[1])
