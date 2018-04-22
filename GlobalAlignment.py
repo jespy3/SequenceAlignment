@@ -102,13 +102,17 @@ def global_alignment_linear(X, Y, d):
 
     print(len(Y))
     longerString = X if len(X) >= len(Y) else Y
-    # initialising first row
-    for j in range(len(Y)+1):
-        matrix[0][j] = -j * d
 
-    # initialising first column
-    for i in range(len(X)+1):
-        matrix[i][0] = -i * d
+    # initialising first row and first column
+    for i in range(len(longerString)+1):
+        try:
+            matrix[0][i] = -i * d   # fill row value if index exists
+        except IndexError:
+            pass                    # pass if index not exists
+        try:
+            matrix[i][0] = -i * d   # fill row value if index exists
+        except IndexError:
+            pass                    # pass if index not exists
 
     print(matrix)
 
