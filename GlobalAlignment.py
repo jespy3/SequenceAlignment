@@ -81,15 +81,14 @@ def getBLOSUMscore(firstAA, secondAA):
     tuple = (AAcombo[0],AAcombo[1])
     return BLOSUM[tuple]
 
-# test = 'CD'
-# x = getBLOSUMscore(test[0], test[1])
-# print(x)
+
 
 
 
 def global_alignment_linear(X, Y, d):
     """
     Builds an optimal alignment from two strings of amino acids X and Y with a linear gap penalty
+    
     
     :param X: 1st string of amino acids
     :param Y: 2nd string of amino acids
@@ -112,6 +111,7 @@ def global_alignment_linear(X, Y, d):
         except IndexError:
             pass                    # pass if index not exists
 
+    traceback = {}  # Tracks which cell (i', j') was the maximising pair of (i, j)
     # scoring each possible letter alignment
     for i, row in enumerate(matrix):
         if i == 0:      # skip first row
@@ -119,23 +119,34 @@ def global_alignment_linear(X, Y, d):
         for j, score in enumerate(row):
             if j == 0:  # skip first column
                 continue
-            # print(np.max([
-            #                         matrix[i-1][j-1] + getBLOSUMscore(X[i-1], Y[j-1]),
-            #                         matrix[i-1][j] - d,
-            #                         matrix[i][j-1] - d
-            #                       ]
-            # ))
-            matrix[i][j] = np.max([
-                                    matrix[i-1][j-1] + getBLOSUMscore(X[i-1], Y[j-1]),
-                                    matrix[i-1][j] - d,
-                                    matrix[i][j-1] - d
-                                  ]
+            predecessors = np.array([
+                                        -float('inf'),
+                                        matrix[i][j - 1] - d,
+                                        matrix[i - 1][j] - d,
+                                        matrix[i-1][j-1] + getBLOSUMscore(X[i-1], Y[j-1])
+                                    ]
             )
-            pass
+            matrix[i][j] = np.amax(predecessors)
+
+            # The following finds a location tuple relative to the current cell tuple (i, j) to find
+            #   the maximising pair from the predecessors.
+            maximisingPairLocation = np.unravel_index(np.argmax(predecessors), (2, 2))
+            traceback[(i, j)] = tuple(
+                np.subtract(
+                    (i, j),
+                    maximisingPairLocation
+                )
+            )
+
 
     print(matrix)
+
 
 X = 'GRQTAGL'
 Y = 'GTAYDL'
 d = 8
 global_alignment_linear(X, Y, d)
+test = 'LL'
+x = getBLOSUMscore(test[0], test[1])
+#print(x)
+#print(6+5-3-3-5-6-2)
