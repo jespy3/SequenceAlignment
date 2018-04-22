@@ -69,10 +69,12 @@ class AminoAcid:
         return self.AAcombo
 
 
+def getBLOSUMscore(firstAA, secondAA):
+    AAcombo = firstAA + secondAA
+    AAcombo = orderAAs(AAcombo)
+    tuple = (AAcombo[0],AAcombo[1])
+    return BLOSUM[tuple]
 
 test = 'CD'
-test = orderAAs(test)
-tuple = (test[0],test[1])
-
-x = BLOSUM[tuple]
+x = getBLOSUMscore(test[0], test[1])
 print(x)
