@@ -100,9 +100,7 @@ def global_alignment_linear(X, Y, d):
     # Setting size of matrix
     matrix = np.zeros((len(X)+1, len(Y)+1))
 
-    print(len(Y))
     longerString = X if len(X) >= len(Y) else Y
-
     # initialising first row and first column
     for i in range(len(longerString)+1):
         try:
@@ -113,6 +111,17 @@ def global_alignment_linear(X, Y, d):
             matrix[i][0] = -i * d   # fill row value if index exists
         except IndexError:
             pass                    # pass if index not exists
+
+    # scoring each possible letter alignment
+    for i, row in enumerate(matrix):
+        if i == 0:      # skip first row
+            continue
+        #print(row)
+        for j, score in enumerate(row):
+            if j == 0:  # skip first column
+                continue
+            score = np.max([2,7,4])
+            pass
 
     print(matrix)
 
