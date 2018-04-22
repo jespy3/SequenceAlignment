@@ -89,7 +89,7 @@ def global_alignment_linear(X, Y, d):
     """
     Builds an optimal alignment from two strings of amino acids X and Y with a linear gap penalty
     
-    
+    Implementation of the Needleman-Wunsch algorithm.
     :param X: 1st string of amino acids
     :param Y: 2nd string of amino acids
     :param d: linear gap penalty
@@ -138,8 +138,17 @@ def global_alignment_linear(X, Y, d):
                 )
             )
 
-
     print(matrix)
+
+    # Printing the optimal alignment of X and Y
+    X_line = ""
+    Y_line = ""
+    (i, j) = (len(X)+1, len(Y)+1)
+    # while (i, j) != (0,0):
+    #     if traceback(i, j) == (i-1, j-1):
+
+
+
 
 
 X = 'GRQTAGL'
