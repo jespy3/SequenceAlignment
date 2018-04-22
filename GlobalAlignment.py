@@ -20,10 +20,10 @@ BLOSUM = {}                                     # initialise dictionary to conta
 #         AAcombos.append(ival+jval)
 
 index = 0
-for line in lineList:
+for i, line in enumerate(lineList):
     #print(line)
     # print(line.split('\t'))
-    for num in line.split('\t'):
+    for j, num in enumerate(line.split('\t')):
         key = AAcombos[index]
         BLOSUM[key] = int(num)
         print(f"key={key} inserted into BLOSUM with value={int(num)}")
