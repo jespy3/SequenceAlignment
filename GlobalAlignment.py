@@ -116,11 +116,21 @@ def global_alignment_linear(X, Y, d):
     for i, row in enumerate(matrix):
         if i == 0:      # skip first row
             continue
-        #print(row)
         for j, score in enumerate(row):
             if j == 0:  # skip first column
                 continue
-            score = np.max([2,7,4])
+            # print(np.max([
+            #                         matrix[i-1][j-1] + getBLOSUMscore(X[i-1], Y[j-1]),
+            #                         matrix[i-1][j] - d,
+            #                         matrix[i][j-1] - d
+            #                       ]
+            # ))
+            matrix[i][j] = np.max([
+                                    matrix[i-1][j-1] + getBLOSUMscore(X[i-1], Y[j-1]),
+                                    matrix[i-1][j] - d,
+                                    matrix[i][j-1] - d
+                                  ]
+            )
             pass
 
     print(matrix)
