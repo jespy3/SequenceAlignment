@@ -68,7 +68,6 @@ class AminoAcid:
             self.AAcombo = self.AAcombo[::-1]
         return self.AAcombo
 
-
 def getBLOSUMscore(firstAA, secondAA):
     """
     Returns the similarity score of two amino acids.
@@ -82,6 +81,34 @@ def getBLOSUMscore(firstAA, secondAA):
     tuple = (AAcombo[0],AAcombo[1])
     return BLOSUM[tuple]
 
-test = 'CD'
-x = getBLOSUMscore(test[0], test[1])
-print(x)
+# test = 'CD'
+# x = getBLOSUMscore(test[0], test[1])
+# print(x)
+
+
+
+def global_alignment_linear(X, Y, d):
+    """
+    Builds an optimal alignment from two strings of amino acids X and Y with a linear gap penalty
+    
+    :param X: 1st string of amino acids
+    :param Y: 2nd string of amino acids
+    :param d: linear gap penalty
+    :return: prints optimal alignment, and returns a similarity score of X and Y
+    """
+
+    # Setting size of matrix
+    matrix = np.zeros((len(X)+1, len(Y)+1))
+
+    # initialising first row
+    for i, num in enumerate(matrix[0]):
+        matrix[0][i] = -i * d
+
+    # initialising second row
+
+    print(matrix)
+
+X = 'GRQTAGL'
+Y = 'GTAYDL'
+d = 8
+global_alignment_linear(X, Y, d)
