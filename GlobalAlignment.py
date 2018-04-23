@@ -143,9 +143,23 @@ def global_alignment_linear(X, Y, d):
     # Printing the optimal alignment of X and Y
     X_line = ""
     Y_line = ""
-    (i, j) = (len(X)+1, len(Y)+1)
-    # while (i, j) != (0,0):
-    #     if traceback(i, j) == (i-1, j-1):
+    (i, j) = (len(X), len(Y))
+    while (i, j) != (0,0):
+        if traceback[(i, j)] == (i-1, j-1):
+            X_line += X[i-1]
+            Y_line += Y[j-1]
+        elif traceback[(i,j)] == (i-1, j):
+            X_line += X[i-1]
+            Y_line += '-'
+        else:
+            X_line += '-'
+            Y_line += Y[j-1]
+        (i, j) = traceback[(i, j)]
+    X_line = X_line[::-1]
+    Y_line = Y_line[::-1]
+
+    print('X =', X_line)
+    print('Y =', Y_line)
 
 
 
