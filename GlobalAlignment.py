@@ -158,8 +158,10 @@ def global_alignment_linear(X, Y, d):
     X_line = X_line[::-1]   # X_line and Y_line reversed because they were
     Y_line = Y_line[::-1]   #   constructed in reverse order.
 
-    print('X =', X_line)
-    print('Y =', Y_line)
+    
+    optimalAlignment = f"X = {X_line}\n" \
+                       f"Y = {Y_line}"
+    print(optimalAlignment)
 
 
 
