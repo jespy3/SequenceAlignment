@@ -141,6 +141,7 @@ def global_alignment_linear(X, Y, d):
     print(matrix)
 
     # Printing the optimal alignment of X and Y
+    change_line = ""
     X_line = ""
     Y_line = ""
     (i, j) = (len(X), len(Y))
@@ -151,6 +152,7 @@ def global_alignment_linear(X, Y, d):
         elif traceback[(i,j)] == (i-1, j):      # if a gap in Y
             X_line += X[i-1]
             Y_line += '-'
+            #### --------------- change line stuff
         else:                                   # if a gap in X
             X_line += '-'
             Y_line += Y[j-1]
@@ -158,8 +160,9 @@ def global_alignment_linear(X, Y, d):
     X_line = X_line[::-1]   # X_line and Y_line reversed because they were
     Y_line = Y_line[::-1]   #   constructed in reverse order.
 
-    
-    optimalAlignment = f"X = {X_line}\n" \
+
+    optimalAlignment = f"    {'test'}\n" \
+                       f"X = {X_line}\n" \
                        f"Y = {Y_line}"
     print(optimalAlignment)
 
