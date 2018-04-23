@@ -145,18 +145,18 @@ def global_alignment_linear(X, Y, d):
     Y_line = ""
     (i, j) = (len(X), len(Y))
     while (i, j) != (0,0):
-        if traceback[(i, j)] == (i-1, j-1):
+        if traceback[(i, j)] == (i-1, j-1):     # if a match/replacement
             X_line += X[i-1]
             Y_line += Y[j-1]
-        elif traceback[(i,j)] == (i-1, j):
+        elif traceback[(i,j)] == (i-1, j):      # if a gap in Y
             X_line += X[i-1]
             Y_line += '-'
-        else:
+        else:                                   # if a gap in X
             X_line += '-'
             Y_line += Y[j-1]
         (i, j) = traceback[(i, j)]
-    X_line = X_line[::-1]
-    Y_line = Y_line[::-1]
+    X_line = X_line[::-1]   # X_line and Y_line reversed because they were
+    Y_line = Y_line[::-1]   #   constructed in reverse order.
 
     print('X =', X_line)
     print('Y =', Y_line)
