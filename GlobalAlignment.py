@@ -149,22 +149,26 @@ def global_alignment_linear(X, Y, d):
         if traceback[(i, j)] == (i-1, j-1):     # if a match/replacement
             X_line += X[i-1]
             Y_line += Y[j-1]
+            change_line += 'M' if X[i-1] == Y[j-1] else 'R'
         elif traceback[(i,j)] == (i-1, j):      # if a gap in Y
             X_line += X[i-1]
             Y_line += '-'
-            #### --------------- change line stuff
+            change_line += 'D'
         else:                                   # if a gap in X
             X_line += '-'
             Y_line += Y[j-1]
+            change_line += 'I'
         (i, j) = traceback[(i, j)]
     X_line = X_line[::-1]   # X_line and Y_line reversed because they were
     Y_line = Y_line[::-1]   #   constructed in reverse order.
+    change_line = change_line[::-1]
 
 
-    optimalAlignment = f"    {'test'}\n" \
-                       f"X = {X_line}\n" \
-                       f"Y = {Y_line}"
+    optimalAlignment = f"{'Change = ':>9}{change_line}\n" \
+                       f"{'X = ':>9}{X_line}\n" \
+                       f"{'Y = ':>9}{Y_line}"
     print(optimalAlignment)
+
 
 
 
@@ -174,7 +178,7 @@ X = 'GRQTAGL'
 Y = 'GTAYDL'
 d = 8
 global_alignment_linear(X, Y, d)
-test = 'LL'
+test = 'ME'
 x = getBLOSUMscore(test[0], test[1])
-#print(x)
+print(x)
 #print(6+5-3-3-5-6-2)
