@@ -2,6 +2,7 @@ import numpy as np
 from itertools import combinations_with_replacement
 
 #Sheen was here
+# Josh was here too
 # This is a test matrix
 # m = np.array([[1, 2, 3], [4, 5, 6]])
 # print(m)
@@ -72,7 +73,7 @@ class AminoAcid:
 def getBLOSUMscore(firstAA, secondAA):
     """
     Returns the similarity score of two amino acids.
-    
+
     :param firstAA: string of one letter according to an amino acid, usually from the first AA sequence.
     :param secondAA: string of one letter according to an amino acid, usually from the second AA sequence.
     :return: returns BLOSUM62 score of the amino acid similarity.
@@ -89,7 +90,7 @@ def getBLOSUMscore(firstAA, secondAA):
 def global_alignment_linear(X, Y, d):
     """
     Builds an optimal alignment from two strings of amino acids X and Y with a linear gap penalty
-    
+
     Implementation of the Needleman-Wunsch algorithm.
     :param X: 1st string of amino acids
     :param Y: 2nd string of amino acids
