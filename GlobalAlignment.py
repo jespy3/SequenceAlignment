@@ -128,7 +128,11 @@ def global_alignment_linear(X, Y, d):
                                         matrix[i-1][j-1] + getBLOSUMscore(X[i-1], Y[j-1])
                                     ]
             )
-            matrix[i][j] = np.amax(predecessors)
+            max_predecessor = np.amax(predecessors)
+            matrix[i][j] = max_predecessor
+
+            # accessing each predecessor that gives the maximum score per cell
+            print(np.argwhere(predecessors == max_predecessor).flatten().tolist())
 
             # The following finds a location tuple relative to the current cell tuple (i, j) to find
             #   the maximising pair from the predecessors.
