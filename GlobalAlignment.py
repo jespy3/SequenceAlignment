@@ -1,7 +1,8 @@
 import numpy as np
+import ReadBLOSUM62
 from itertools import combinations_with_replacement
 
-#Sheen was here
+# Sheen was here
 # Josh was here too
 # This is a test matrix
 # m = np.array([[1, 2, 3], [4, 5, 6]])
@@ -44,31 +45,6 @@ def orderAAs(AAcombo):
     if orderValue[firstAA] > orderValue[secondAA]:
         AAcombo = AAcombo[::-1]               # Reverses AAcombo order if not in order
     return AAcombo
-
-class AminoAcid:
-
-
-    def __init__(self, AAcombo):
-        self.AAcombo = AAcombo
-
-        AAorder = 'ARNDCQEGHILKMFPSTWYV'
-        self.orderValue = {}  # to assign each amino acid with an orderValue
-        for i, AA in enumerate(AAorder):
-            self.orderValue[AAorder[i]] = i
-
-    def OrderAAs(self):
-        '''
-        Re-arranges the order of the amino acid combination for searching in the BLOSUM62 matrix.
-
-        :param AAcombo: string of two letters according to amino acids, in any order
-        :return: string rearranged in the amino acid order 'ARNDCQEGHILKMFPSTWYV'
-        '''
-
-        firstAA = self.AAcombo[0]
-        secondAA = self.AAcombo[1]
-        if self.orderValue[firstAA] > self.orderValue[secondAA]:
-            self.AAcombo = self.AAcombo[::-1]
-        return self.AAcombo
 
 def getBLOSUMscore(firstAA, secondAA):
     """
