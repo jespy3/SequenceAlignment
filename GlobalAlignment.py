@@ -16,6 +16,10 @@ AAcombos = list(combinations_with_replacement(AA, 2)) # initialise list for amin
 BLOSUM = {}                                     # initialise dictionary to contain BLOSUM62 values
 
 
+test = ReadBLOSUM62.BLOSUM()
+print(test.convert_to_dictionary('BLOSUM62.txt'))
+
+
 
 # Constructs the dictionary for BLOSUM62
 for i, line in enumerate(lineList):
