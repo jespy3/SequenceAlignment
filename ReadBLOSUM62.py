@@ -34,4 +34,5 @@ class BLOSUM:
                 key = self.AAcombos[AAindex]
                 self.matrix[key] = int(num)
 
+
         return self.matrix

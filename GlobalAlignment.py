@@ -8,27 +8,11 @@ from itertools import combinations_with_replacement
 # m = np.array([[1, 2, 3], [4, 5, 6]])
 # print(m)
 
-f = open('BLOSUM62.txt', 'r')
-lineList = f.read().splitlines()    # list of each line of BLOSUM62 matrix
-
-AA = list('ARNDCQEGHILKMFPSTWYV')               # list of amino acids
-AAcombos = list(combinations_with_replacement(AA, 2)) # initialise list for amino acid combos
-BLOSUM = {}                                     # initialise dictionary to contain BLOSUM62 values
-
-
 test = ReadBLOSUM62.BLOSUM()
-print(test.convert_to_dictionary('BLOSUM62.txt'))
+BLOSUM = test.convert_to_dictionary('BLOSUM62.txt')
 
 
-
-# Constructs the dictionary for BLOSUM62
-for i, line in enumerate(lineList):
-    AAindex = i     # Keeps track of index of AAcombos in how 'BLOSUM62.txt' is read. Acts as sum variable
-    for j, num in enumerate(line.split('\t')):
-        if j != 0:
-            AAindex += (len(lineList)-j)    # updating to correct AAcombos index
-        key = AAcombos[AAindex]
-        BLOSUM[key] = int(num)
+print(BLOSUM)
 
 # Establishing amino acid order
 AAorder = 'ARNDCQEGHILKMFPSTWYV'
