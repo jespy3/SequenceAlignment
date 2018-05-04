@@ -21,12 +21,12 @@ state_transition_probabilities = {'A':[0.2, 0, 0.4],
                                   'C':[0, 0.2, 0.6]
                                   }
 
-state_l = 'B'
-symbol_x1 = 1
+state_l = 'C'
+symbol_x1 = 0
 state_symbol_prob = state_l + str(symbol_x1)
-a = 0 + log2(state_transition_probabilities[state_l][0])
-b = inf + log2(state_transition_probabilities[state_l][1])
-c = inf + log2(state_transition_probabilities[state_l][2])
+a = inf + log2(state_transition_probabilities[state_l][0])
+b = -2.70 + log2(state_transition_probabilities[state_l][1])
+c = -3.70 + log2(state_transition_probabilities[state_l][2])
 
 p_symbol = emission_probabilities[state_symbol_prob]
 print(p_symbol)

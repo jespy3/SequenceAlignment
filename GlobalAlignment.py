@@ -139,7 +139,7 @@ def global_alignment_linear(X, Y, d):
                        f"{'Y = ':>9}{Y_line}"
     print(optimalAlignment)
 
-
+    return matrix
 
 
 
@@ -152,3 +152,12 @@ test = 'ME'
 x = getBLOSUMscore(test[0], test[1])
 print(x)
 #print(6+5-3-3-5-6-2)
+
+f = open('wunsch_matrix.csv', 'w')
+matrix = global_alignment_linear(X, Y, d)
+for rowNum, row in enumerate(matrix):
+    for colNum, val in enumerate(row):
+        cell_end = ',' if colNum < len(row)-1 else '\n'
+        f.write(str(val) + cell_end)
+
+f.close()
